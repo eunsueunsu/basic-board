@@ -1,10 +1,9 @@
 <template>
   <v-container>
-    <v-spacer></v-spacer>
 
 
-    <v-row class="text-center">
-      <v-col >
+    <v-row  class="text-center">
+      <v-col>
         <v-switch :label="`깜깜하게`" v-model="$vuetify.theme.dark" class="float-right"></v-switch>
       </v-col>
       <v-col cols="12">
