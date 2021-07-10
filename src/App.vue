@@ -39,7 +39,10 @@
 
     <v-main>
       <HelloWorld/>
+      <!--      <BottomInsertSheetTest/>-->
       <ContentsList/>
+<BottomInsertSheetTest/>
+
     </v-main>
   </v-app>
 </template>
@@ -47,6 +50,7 @@
 <script>
 import HelloWorld from './components/HelloWorld';
 import ContentsList from './components/ContentsList';
+import BottomInsertSheetTest from './components/BottomInsertSheetTest';
 
 
 export default {
@@ -55,10 +59,10 @@ export default {
   components: {
     HelloWorld,
     ContentsList,
+    BottomInsertSheetTest
   },
 
   data: () => ({
-
     //
   }),
 };
