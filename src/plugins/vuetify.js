@@ -9,7 +9,7 @@ const vuetify = new Vuetify({
             light:{
                 primary : '#ff80ab',
 
-                secondary : '#f3e5f5'
+                secondary : '#ffb6c1'
             },
             dark:{
                 primary:'#c94f7c',
