@@ -3,9 +3,9 @@
 
 
     <v-row  class="text-center">
-      <v-col>
-        <v-switch :label="`깜깜하게`" v-model="$vuetify.theme.dark" class="float-right"></v-switch>
-      </v-col>
+<!--      <v-col>-->
+<!--        <v-switch :label="`깜깜하게`" v-model="$vuetify.theme.dark" class="float-right"></v-switch>-->
+<!--      </v-col>-->
       <v-col cols="12">
         <v-img
           :src="require('../assets/loopy.jpg')"

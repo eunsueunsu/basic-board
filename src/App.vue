@@ -7,8 +7,11 @@
         dark
         hide-on-scroll
     >
+      <v-app-bar-nav-icon @click="drawer = true">
+
+      </v-app-bar-nav-icon>
       <div class="d-flex align-center">
-        <h2>방명록 쓰고가기 </h2>
+        <h4>방명록 쓰고가기 </h4>
         <!--        <v-img-->
         <!--          alt="Vuetify Logo"-->
         <!--          class="shrink mr-2"-->
@@ -38,9 +41,7 @@
       <!--        <v-icon>mdi-open-in-new</v-icon>-->
       <!--      </v-btn>-->
       <v-spacer></v-spacer>
-      <v-app-bar-nav-icon @click="drawer = true">
 
-      </v-app-bar-nav-icon>
 
     </v-app-bar>
 
@@ -49,14 +50,30 @@
       <!--      <BottomInsertSheetTest/>-->
       <ContentsList/>
       <BottomInsertSheetTest/>
-      <v-navigation-drawer v-model="drawer" >
-        <v-list>
 
-        </v-list>
-
-      </v-navigation-drawer>
     </v-main>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list>
+        <v-list-item-group
+        active-class="primary--text text--accent-4">
+        <v-list-item>
+          <v-list-item-icon>
+          <v-icon large>
+            mdi-github
+          </v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>
+            github
+          </v-list-item-title>
+        </v-list-item>
+          <v-list-item>
+            <v-switch :label="`깜깜하게`" v-model="$vuetify.theme.dark" class="float-right"></v-switch>
 
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+
+    </v-navigation-drawer>
   </v-app>
 </template>
 
