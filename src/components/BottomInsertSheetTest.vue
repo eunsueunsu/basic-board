@@ -44,7 +44,7 @@
 
                   <v-row class="pa-3 ">
                     <v-col cols="12">
-                      <v-textarea label="예쁜말 고운말" outlined rows="2">
+                      <v-textarea label="서윗하게 쓰쇼" outlined rows="5">
                       </v-textarea>
                     </v-col>
                   </v-row>

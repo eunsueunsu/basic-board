@@ -1,9 +1,11 @@
 <template>
   <v-app>
+
     <v-app-bar
         app
         color="primary"
         dark
+        hide-on-scroll
     >
       <div class="d-flex align-center">
         <h2>방명록 쓰고가기 </h2>
@@ -35,15 +37,26 @@
       <!--        <span class="mr-2">Latest Release</span>-->
       <!--        <v-icon>mdi-open-in-new</v-icon>-->
       <!--      </v-btn>-->
+      <v-spacer></v-spacer>
+      <v-app-bar-nav-icon @click="drawer = true">
+
+      </v-app-bar-nav-icon>
+
     </v-app-bar>
 
     <v-main>
       <HelloWorld/>
       <!--      <BottomInsertSheetTest/>-->
       <ContentsList/>
-<BottomInsertSheetTest/>
+      <BottomInsertSheetTest/>
+      <v-navigation-drawer v-model="drawer" >
+        <v-list>
 
+        </v-list>
+
+      </v-navigation-drawer>
     </v-main>
+
   </v-app>
 </template>
 
@@ -63,6 +76,8 @@ export default {
   },
 
   data: () => ({
+    drawer: false,
+    group: null
     //
   }),
 };

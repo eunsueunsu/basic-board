@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-list>
+  <v-container  >
+    <v-list >
       <v-card class="ma-2" elevation="0" outlined v-for="data in list" :key="data.id">
 
         <v-row align="center" class="card-row">
