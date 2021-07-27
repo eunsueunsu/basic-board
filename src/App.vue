@@ -50,58 +50,16 @@
       <!--      <BottomInsertSheetTest/>-->
       <ContentsList/>
       <BottomInsertSheetTest/>
-
     </v-main>
     <v-navigation-drawer v-model="drawer" absolute temporary>
-      <v-list>
-        <v-list-item-group
-            active-class="primary--text text--accent-4">
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon large>
-                mdi-github
-              </v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>
-              Github
-            </v-list-item-title>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon large>
-                mdi-account
-              </v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>
-              Resume
-            </v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-switch :label="`dark mode`" v-model="$vuetify.theme.dark" class="float-right"></v-switch>
-
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon large>
-                mdi-login
-              </v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>
-              login as admin
-            </v-list-item-title>
-          </v-list-item>
-
-        </v-list-item-group>
-      </v-list>
-
+      <NavDrawer></NavDrawer>
     </v-navigation-drawer>
   </v-app>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld';
+import NavDrawer from './components/NavDrawer';
 import ContentsList from './components/ContentsList';
 import BottomInsertSheetTest from './components/BottomInsertSheetTest';
 
@@ -112,12 +70,12 @@ export default {
   components: {
     HelloWorld,
     ContentsList,
-    BottomInsertSheetTest
+    BottomInsertSheetTest,
+    NavDrawer
   },
 
   data: () => ({
     drawer: false,
-    group: null
     //
   }),
 };
