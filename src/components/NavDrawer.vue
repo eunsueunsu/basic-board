@@ -24,7 +24,13 @@
         </v-list-item>
 
         <v-list-item>
-          <v-switch :label="`dark mode`" v-model="$vuetify.theme.dark" class="float-right"></v-switch>
+          <v-list-item-icon>
+          <v-switch  v-model="$vuetify.theme.dark" class="float-right"></v-switch>
+<!--          :label="`dark mode`"-->
+          </v-list-item-icon>
+          <v-list-item-title>
+            dark mode
+          </v-list-item-title>
 
         </v-list-item>
 

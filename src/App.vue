@@ -50,6 +50,7 @@
       <!--      <BottomInsertSheetTest/>-->
       <ContentsList/>
       <BottomInsertSheetTest/>
+
     </v-main>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <NavDrawer></NavDrawer>
@@ -64,6 +65,7 @@ import ContentsList from './components/ContentsList';
 import BottomInsertSheetTest from './components/BottomInsertSheetTest';
 
 
+
 export default {
   name: 'App',
 
@@ -71,12 +73,23 @@ export default {
     HelloWorld,
     ContentsList,
     BottomInsertSheetTest,
-    NavDrawer
+    NavDrawer,
+
+
   },
 
   data: () => ({
     drawer: false,
+    showInputModal:false
     //
   }),
+  methods:{
+
+    close() {
+      this.showInputModal=false
+
+    }
+
+  }
 };
 </script>

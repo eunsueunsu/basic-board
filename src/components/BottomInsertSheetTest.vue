@@ -13,12 +13,13 @@
           mdi-pencil
         </v-icon>
       </v-btn>
-    </v-fab-transition>gi
+    </v-fab-transition>
     <v-bottom-sheet v-model="sheet">
       <v-sheet height="300px">
         <template>
           <v-container>
-            <v-row class="text-center">
+
+            <v-row class="text-center" style="max-width: 980px" align-content="center">
               <v-col>
                 <!-- align="center" - 베이스라인 잡아줌
                 -->

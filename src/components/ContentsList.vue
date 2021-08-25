@@ -1,6 +1,6 @@
 <template>
-  <v-container  >
-    <v-list >
+  <v-container>
+    <v-list>
       <v-card class="ma-2" elevation="0" outlined v-for="data in list" :key="data.id">
 
         <v-row align="center" class="card-row">
@@ -8,7 +8,7 @@
             <v-card-text class="name" style="color :#ffb6c1">{{ data.name }}</v-card-text>
           </v-col>
           <v-col cols="6">
-            <v-card-text class="card-date" >{{ '@' + data.date }}</v-card-text>
+            <v-card-text class="card-date">{{ '@' + data.date }}</v-card-text>
           </v-col>
 
           <v-col cols="8" class="mr-auto">
@@ -16,13 +16,13 @@
           </v-col>
           <v-col cols="auto">
             <v-card-actions>
-              <v-btn small rounded outlined class="secondary">
-                <v-icon >mdi-pencil</v-icon>
+              <v-btn small rounded outlined class="secondary" @click="onClickShowModal('수정하기')">
+                <v-icon>mdi-pencil</v-icon>
               </v-btn>
             </v-card-actions>
             <v-card-actions>
-              <v-btn small rounded outlined class="secondary">
-                <v-icon >
+              <v-btn small rounded outlined class="secondary" @click="onClickShowModal('삭제하기')">
+                <v-icon>
                   mdi-delete
                 </v-icon>
               </v-btn>
@@ -33,14 +33,24 @@
       </v-card>
 
     </v-list>
+    <!--    부모 -> 자식 props 전달-->
+    <InputModal v-if="showInputModal" :header-name="this.modalHeaderName" @close="showInputModal=false">
+    </InputModal>
   </v-container>
-
 </template>
-
 <script>
+
+import InputModal from "./modal/InputModal";
+
 export default {
   name: "ContentsList",
+  components: {
+    InputModal,
+
+  },
   data: () => ({
+    showInputModal: false,
+    modalHeaderName: "",
     list: [
       {
         id: 1,
@@ -57,7 +67,14 @@ export default {
       {id: 4, name: "eunsu lee", content: "test2"},
       {id: 5, name: "eunsu lee", content: "test2"},
     ]
-  })
+  }),
+  methods: {
+    onClickShowModal(headerName) {
+      this.showInputModal = true
+      this.modalHeaderName = headerName
+    },
+
+  }
 }
 </script>
 
