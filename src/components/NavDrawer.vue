@@ -40,23 +40,39 @@
               mdi-login
             </v-icon>
           </v-list-item-icon>
-          <v-list-item-title>
+          <v-list-item-title @click="onClickLoginAsAdmin()">
             login as admin
           </v-list-item-title>
         </v-list-item>
 
       </v-list-item-group>
+      <InputModal v-if="showInputModal" :header-name="this.modalHeaderName" @close="showInputModal=false">
+      </InputModal>
     </v-list>
+
 </template>
 
 <script>
+import InputModal from "./modal/InputModal";
+
 export default {
   name: "NavDrawer",
-
+  components:{
+    InputModal
+  },
   data: () => ({
-    group: null
-  })
+    group: null,
+    // showInputModal:false,
+    modalHeaderName :'',
+  }),
+  methods: {
+    onClickLoginAsAdmin() {
+      // this.showInputModal=true
+      // this.modalHeaderName='관리자로 로그인'
+      this.$emit("onClickShowModal",'관리자로 로그인')
 
+    }
+  }
 
 
 }

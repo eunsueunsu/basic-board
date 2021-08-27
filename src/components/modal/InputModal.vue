@@ -1,8 +1,10 @@
 <template>
   <transition name="modal">
+
+
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <v-card class="modal-container">
 
           <div class="modal-header">
             <slot name="header">
@@ -15,7 +17,7 @@
 <!--             <input placeholder="password"/>-->
               <v-text-field
               ref="pwd"
-              v-mode="pwd"
+              v-model="pwd"
               :rules="[() => !!pwd || '비밀번호를 입력해주세요']"
               label=""
               placeholder="password"
@@ -27,15 +29,17 @@
           <div class="modal-footer">
             <slot name="footer">
 <!--              TODO : 비밀번호 확인 - 부모component로 - 수정/삭제 진행-->
-<!--              TODO : 다크모드 설정 / 외부클릭시 닫힘-->
-              <v-btn class="primary"  @click="$emit('close')">확인</v-btn>
+<!--              TODO : 외부클릭시 닫힘-->
+              <v-btn class="primary col-md"  @click="$emit('close')">확인</v-btn>
 <!--              <button class="modal-default-button primary"">-->
 <!--                OK-->
 <!--              </button>-->
             </slot>
           </div>
-        </div>
+
+        </v-card>
       </div>
+
     </div>
   </transition>
 </template>
@@ -72,10 +76,10 @@ export default {
 }
 
 .modal-container {
-  width: 30rem;
-  margin: 0px auto;
+  /*width: 30rem;*/
+  margin:  10em 5em;
   padding: 20px 30px;
-  background-color: #fff;
+  /*background-color: #fff;*/
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
@@ -84,7 +88,7 @@ export default {
 
 .modal-header h3 {
   margin-top: 0;
-  color: #42b983;
+  /*color: #42b983;*/
 }
 
 .modal-body {

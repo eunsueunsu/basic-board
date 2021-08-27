@@ -55,6 +55,8 @@
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <NavDrawer></NavDrawer>
     </v-navigation-drawer>
+    <InputModal v-if="showInputModal" :header-name="this.modalHeaderName" @close="showInputModal=false">
+    </InputModal>
   </v-app>
 </template>
 
@@ -63,6 +65,7 @@ import HelloWorld from './components/HelloWorld';
 import NavDrawer from './components/NavDrawer';
 import ContentsList from './components/ContentsList';
 import BottomInsertSheetTest from './components/BottomInsertSheetTest';
+import InputModal from "./components/modal/InputModal";
 
 
 
@@ -74,21 +77,23 @@ export default {
     ContentsList,
     BottomInsertSheetTest,
     NavDrawer,
+    InputModal,
 
 
   },
 
   data: () => ({
     drawer: false,
-    showInputModal:false
+    showInputModal:false,
+    modalHeaderName:'',
     //
   }),
   methods:{
 
-    close() {
-      this.showInputModal=false
-
-    }
+    onClickShowModal(headerName) {
+      this.showInputModal = true
+      this.modalHeaderName = headerName
+    },
 
   }
 };
