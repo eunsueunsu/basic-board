@@ -78,8 +78,6 @@ export default {
     BottomInsertSheetTest,
     NavDrawer,
     InputModal,
-
-
   },
 
   data: () => ({

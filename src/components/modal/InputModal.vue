@@ -47,6 +47,9 @@
 <script>
 export default {
   name: "InputModal",
+  data: () => ({
+    pwd:'',
+  }),
   props : {
     headerName:{
       type: String,
@@ -76,7 +79,7 @@ export default {
 }
 
 .modal-container {
-  /*width: 30rem;*/
+  width: 30rem;
   margin:  10em 5em;
   padding: 20px 30px;
   /*background-color: #fff;*/

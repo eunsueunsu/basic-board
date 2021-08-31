@@ -46,19 +46,17 @@
         </v-list-item>
 
       </v-list-item-group>
-      <InputModal v-if="showInputModal" :header-name="this.modalHeaderName" @close="showInputModal=false">
-      </InputModal>
+<!--      <InputModal v-if="showInputModal" :header-name="this.modalHeaderName" @close="showInputModal=false">-->
+<!--      </InputModal>-->
     </v-list>
 
 </template>
 
 <script>
-import InputModal from "./modal/InputModal";
 
 export default {
   name: "NavDrawer",
   components:{
-    InputModal
   },
   data: () => ({
     group: null,
