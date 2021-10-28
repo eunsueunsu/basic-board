@@ -52,9 +52,11 @@
       <BottomInsertSheetTest/>
 
     </v-main>
+
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <NavDrawer></NavDrawer>
     </v-navigation-drawer>
+
     <InputModal v-if="showInputModal" :header-name="this.modalHeaderName" @close="showInputModal=false">
     </InputModal>
   </v-app>
@@ -92,6 +94,10 @@ export default {
       this.showInputModal = true
       this.modalHeaderName = headerName
     },
+    hideModal(){
+      this.showInputModal=false
+    },
+
 
   }
 };

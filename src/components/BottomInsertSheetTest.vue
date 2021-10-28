@@ -17,15 +17,14 @@
     <v-bottom-sheet v-model="sheet">
       <v-sheet height="300px">
         <template>
-          <v-container>
+          <v-container class="bs-con">
 
-            <v-row class="text-center" style="max-width: 980px" align-content="center">
+            <v-row class="bs-row">
               <v-col>
                 <!-- align="center" - 베이스라인 잡아줌
                 -->
 
-                <v-row class="pa-3 " align="center"
-                       justify="space-around">
+                <v-row class="pa-3">
 
                   <v-col cols="4">
                     <v-text-field label="닉네임">
@@ -74,5 +73,16 @@ export default {
 </script>
 
 <style scoped>
+@import "/src/assets/styles/bottomInsertSheet.css";
+
+.bs-row {
+  max-width: 980px;
+}
+
+.bs-con {
+  display: flex;
+  justify-content: center;
+}
+
 
 </style>

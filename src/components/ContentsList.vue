@@ -16,12 +16,12 @@
           </v-col>
           <v-col cols="auto">
             <v-card-actions>
-              <v-btn small rounded outlined class="secondary" @click="onClickShowModal('수정하기')">
+              <v-btn small rounded outlined class="secondary" @click="onClickShowModal('수정하기',data.name)">
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
             </v-card-actions>
             <v-card-actions>
-              <v-btn small rounded outlined class="secondary" @click="onClickShowModal('삭제하기')">
+              <v-btn small rounded outlined class="secondary" @click="onClickShowModal('삭제하기',data.name)">
                 <v-icon>
                   mdi-delete
                 </v-icon>
@@ -34,7 +34,7 @@
 
     </v-list>
     <!--    부모 -> 자식 props 전달-->
-    <InputModal v-if="showInputModal" :header-name="this.modalHeaderName" @close="showInputModal=false">
+    <InputModal v-if="showInputModal" :header-name="this.modalHeaderName" :selected-name="this.selectedName" @close="showInputModal=false">
     </InputModal>
   </v-container>
 </template>
@@ -49,6 +49,7 @@ export default {
 
   },
   data: () => ({
+    selectedName : "",
     showInputModal: false,
     modalHeaderName: "",
     list: [
@@ -69,9 +70,11 @@ export default {
     ]
   }),
   methods: {
-    onClickShowModal(headerName) {
+    onClickShowModal(headerName,name) {
       this.showInputModal = true
       this.modalHeaderName = headerName
+      this.selectedName = name
+
     },
 
   }
