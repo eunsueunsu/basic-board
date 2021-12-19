@@ -2,11 +2,11 @@
   <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <v-card class="modal-container" v-click-outside="this.$emit('close')">
+        <v-card class="modal-container" v-click-outside="onClickOutside">
 
           <div class="modal-header">
             <slot name="header">
-              {{ headerName }}
+              {{ inputModalStore.modalHeaderName }}
             </slot>
           </div>
 
@@ -43,30 +43,42 @@
 
 <script>
 import vClickOutside from 'v-click-outside'
+import {mapState} from "vuex";
 
 export default {
   name: "InputModal",
   data: () => ({
     pwd: '',
   }),
-  props: {
-    headerName: {
-      type: String,
-      default: '수정하기/삭제하기'
-    },
-    selectedName : {
-      type : String,
-    }
-  },
+  // props: {
+  //   headerName: {
+  //     type: String,
+  //     default: '수정하기/삭제하기'
+  //   },
+  //   selectedName : {
+  //     type : String,
+  //   }
+  // },
+  computed:
+      mapState({
+        inputModalStore: state => state.inputModalStore
+      }),
   methods: {
+    // ...mapActions('inputModalStore',['callCloseInputModal']),
     onClickConfirm(){
       // TODO : 비밀번호 체크 api 수정/삭제 분기
       // success -> bottomsheet open
 
       // fail -> toast error
 
-      this.$emit('close')
+      // this.$emit('close')
+    },
+    onClickOutside(){
+      // this.$store.state.inputModalStore.showInputModal=false
+    this.$store.dispatch('inputModalStore/callCloseInputModal')
     }
+
+
   },
   directives: {
     clickOutside: vClickOutside.directive

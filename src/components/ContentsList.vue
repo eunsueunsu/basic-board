@@ -5,14 +5,14 @@
 
         <v-row align="center" class="card-row">
           <v-col cols="6">
-            <v-card-text class="name" style="color :#ffb6c1">{{ data.name }}</v-card-text>
+            <v-card-text class="name" style="color :#ffb6c1">{{ data.authorId }}</v-card-text>
           </v-col>
           <v-col cols="6">
-            <v-card-text class="card-date">{{ '@' + data.date }}</v-card-text>
+            <v-card-text class="card-date">{{ '@' + data.createdAt }}</v-card-text>
           </v-col>
 
           <v-col cols="8" class="mr-auto">
-            <v-card-text>{{ data.content }}</v-card-text>
+            <v-card-text>{{ data.text }}</v-card-text>
           </v-col>
           <v-col cols="auto">
             <v-card-actions>
@@ -33,14 +33,17 @@
       </v-card>
 
     </v-list>
-    <!--    부모 -> 자식 props 전달-->
-    <InputModal v-if="showInputModal" :header-name="this.modalHeaderName" :selected-name="this.selectedName" @close="showInputModal=false">
+    <InputModal v-if="inputModalStore.showInputModal"
+    >
     </InputModal>
   </v-container>
 </template>
 <script>
 
 import InputModal from "./modal/InputModal";
+import {mapState, mapActions, mapMutations} from "vuex";
+import axios from "axios";
+
 
 export default {
   name: "ContentsList",
@@ -49,35 +52,53 @@ export default {
 
   },
   data: () => ({
-    selectedName : "",
-    showInputModal: false,
-    modalHeaderName: "",
-    list: [
-      {
-        id: 1,
-        name: "eunsu lee",
-        content: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1 ",
-        date: '2021-07-08'
-      },
-      {id: 2, name: "배고파요", content: "배고프다구요"},
-      {
-        id: 3,
-        name: "eunsu lee",
-        content: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1"
-      },
-      {id: 4, name: "eunsu lee", content: "test2"},
-      {id: 5, name: "eunsu lee", content: "test2"},
-    ]
+    selectedName: "",
+    // list: [
+    //   {
+    //     id: 1,
+    //     name: "eunsu lee",
+    //     content: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1 ",
+    //     date: '2021-07-08'
+    //   },
+    //   {id: 2, name: "배고파요", content: "배고프다구요"},
+    //   {
+    //     id: 3,
+    //     name: "eunsu lee",
+    //     content: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1"
+    //   },
+    //   {id: 4, name: "eunsu lee", content: "test2"},
+    //   {id: 5, name: "eunsu lee", content: "test2"},
+    // ]
+    list: []
   }),
+  computed:
+      mapState({
+        inputModalStore: state => state.inputModalStore
+      })
+  ,
   methods: {
-    onClickShowModal(headerName,name) {
-      this.showInputModal = true
-      this.modalHeaderName = headerName
-      this.selectedName = name
+    ...mapMutations('inputModalStore', ['changeShowInputModal']
+    ),
+    ...mapActions('inputModalStore', ['callChangeShowInputModal']),
 
+    onClickShowModal(headerName, name) {
+      this.selectedName = name
+      this.$store.dispatch('inputModalStore/callChangeShowInputModal', headerName)
     },
+  },
+  created() {
+    // eslint-disable-next-line no-unused-vars
+    const res = axios.get('/api/contents')
+        .then(res => {
+              this.list = res.data.data
+            }
+            // eslint-disable-next-line no-unused-vars
+        ).catch(error=>{
+          alert('리스트를 불러오는데 실패하였습니다.')
+        })
 
   }
+
 }
 </script>
 
