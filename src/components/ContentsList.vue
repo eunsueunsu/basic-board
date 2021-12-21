@@ -9,7 +9,8 @@
             <v-card-text class="name" style="color :#ffb6c1">{{ data.authorId }}</v-card-text>
           </v-col>
           <v-col cols="8">
-            <v-card-text class="card-date " style="text-align: right" >{{ '@' + getLocalDate(data.createdAt)}}</v-card-text>
+            <v-card-text class="card-date " style="text-align: right">{{ '@' + getLocalDate(data.createdAt) }}
+            </v-card-text>
           </v-col>
 
           <v-col cols="8" class="mr-auto">
@@ -68,23 +69,31 @@ export default {
       pageSize: 5
     },
     selectedName: "",
-    // list: [
-    //   {
-    //     id: 1,
-    //     name: "eunsu lee",
-    //     content: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1 ",
-    //     date: '2021-07-08'
-    //   },
-    //   {id: 2, name: "배고파요", content: "배고프다구요"},
-    //   {
-    //     id: 3,
-    //     name: "eunsu lee",
-    //     content: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1"
-    //   },
-    //   {id: 4, name: "eunsu lee", content: "test2"},
-    //   {id: 5, name: "eunsu lee", content: "test2"},
-    // ]
-    list: []
+    list: [
+      {
+        id: 1,
+        authorId: "eunsu lee",
+        text: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1 ",
+        createdAt: '2021-12-19T16:09:47+09:00'
+      },
+      {
+        id: 2, authorId: "배고파요", text: "배고프다구요", createdAt: '2021-12-19T16:09:47+09:00'
+      },
+      {
+        id: 3,
+        authorId: "eunsu lee",
+        text: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1"
+        , createdAt: '2021-12-19T16:09:47+09:00'
+
+      },
+      {
+        id: 4, authorId: "eunsu lee", text: "test2", createdAt: '2021-12-19T16:09:47+09:00'
+      },
+      {
+        id: 5, authorId: "eunsu lee", text: "test2", createdAt: '2021-12-19T16:09:47+09:008'
+      },
+    ]
+    // list: []
   }),
   computed:
       mapState({
@@ -93,8 +102,8 @@ export default {
   ,
   methods: {
     // eslint-disable-next-line no-unused-vars
-    getLocalDate(date){
-      if(!date) return ''
+    getLocalDate(date) {
+      if (!date) return ''
       return DateTime.fromISO(date).toFormat('yyyy-MM-dd HH:mm:ss')
     },
     ...mapMutations('inputModalStore', ['changeShowInputModal']
@@ -106,21 +115,21 @@ export default {
       this.$store.dispatch('inputModalStore/callChangeShowInputModal', headerName)
     },
     onPageChange() {
-      this.getContentsList()
+      // this.getContentsList()
 
     },
     getContentsList() {
       // eslint-disable-next-line no-unused-vars
       const res = axios.get('/api/contents', {
         params: {
-          pageNumber : this.pagination.pageNumber,
-          pageSize : this.pagination.pageSize
+          pageNumber: this.pagination.pageNumber,
+          pageSize: this.pagination.pageSize
         }
 
       })
           .then(res => {
                 this.list = res.data.content
-                this.pagination.pageNumber = res.data.pageable.pageNumber+1
+                this.pagination.pageNumber = res.data.pageable.pageNumber + 1
                 this.totalPages = res.data.totalPages
               }
               // eslint-disable-next-line no-unused-vars
@@ -131,7 +140,7 @@ export default {
 
   },
   created() {
-    this.getContentsList();
+    // this.getContentsList();
 
 
   }
