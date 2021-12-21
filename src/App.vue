@@ -46,10 +46,9 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
-      <!--      <BottomInsertSheetTest/>-->
+      <Intro/>
       <ContentsList/>
-      <BottomInsertSheetTest/>
+      <BottomInsertSheet/>
 
     </v-main>
 
@@ -63,10 +62,10 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import Intro from './components/Intro';
 import NavDrawer from './components/NavDrawer';
 import ContentsList from './components/ContentsList';
-import BottomInsertSheetTest from './components/BottomInsertSheetTest';
+import BottomInsertSheet from './components/BottomInsertSheet';
 import InputModal from "./components/modal/InputModal";
 
 
@@ -75,9 +74,9 @@ export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    Intro,
     ContentsList,
-    BottomInsertSheetTest,
+    BottomInsertSheet,
     NavDrawer,
     InputModal,
   },

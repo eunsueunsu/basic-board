@@ -16,12 +16,3 @@ new Vue({
     store : store,
     render: h => h(App)
 }).$mount('#app')
-
-// new Vuex.Store({
-//   modules : {
-//     inputModal : inputModalStore
-//   },
-//   mutations:{
-//     onClickShowModal
-//   }
-// })

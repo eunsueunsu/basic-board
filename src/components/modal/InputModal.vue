@@ -12,7 +12,6 @@
 
           <div class="modal-body">
             <slot name="body">
-              <!--             <input placeholder="password"/>-->
               <v-text-field
                   ref="pwd"
                   v-model="pwd"
@@ -28,9 +27,7 @@
             <slot name="footer">
               <!--              TODO : 비밀번호 확인  결과 부모component로 - 수정/삭제 진행-->
               <v-btn class="primary col-md" @click="onClickConfirm">확인</v-btn>
-              <!--              <button class="modal-default-button primary"">-->
-              <!--                OK-->
-              <!--              </button>-->
+
             </slot>
           </div>
 
@@ -50,21 +47,12 @@ export default {
   data: () => ({
     pwd: '',
   }),
-  // props: {
-  //   headerName: {
-  //     type: String,
-  //     default: '수정하기/삭제하기'
-  //   },
-  //   selectedName : {
-  //     type : String,
-  //   }
-  // },
+
   computed:
       mapState({
         inputModalStore: state => state.inputModalStore
       }),
   methods: {
-    // ...mapActions('inputModalStore',['callCloseInputModal']),
     onClickConfirm(){
       // TODO : 비밀번호 체크 api 수정/삭제 분기
       // success -> bottomsheet open
@@ -74,7 +62,6 @@ export default {
       // this.$emit('close')
     },
     onClickOutside(){
-      // this.$store.state.inputModalStore.showInputModal=false
     this.$store.dispatch('inputModalStore/callCloseInputModal')
     }
 

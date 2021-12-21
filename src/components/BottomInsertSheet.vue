@@ -24,7 +24,7 @@
                 <!-- align="center" - 베이스라인 잡아줌
                 -->
 
-                <v-row class="pa-3">
+                <v-row class="pa-3" align="center">
 
                   <v-col cols="4">
                     <v-text-field label="닉네임" v-model="content.authorId">
@@ -36,10 +36,12 @@
                     </v-text-field>
                   </v-col>
 
-                  <v-col cols="4">
-                    <v-btn class="primary" outlined @click="onClickSaveContent">
+                  <v-col cols="4" style="text-align: center; vertical-align: middle">
+                    <div>
+                    <v-btn class="primary col-md" outlined @click="onClickSaveContent">
                       등록
                     </v-btn>
+                    </div>
                   </v-col>
 
                   <v-row class="pa-3 ">
@@ -66,7 +68,7 @@
 import axios from "axios";
 
 export default {
-  name: "BottomInsertSheetTest",
+  name: "BottomInsertSheet",
 
   data: () => ({
     sheet: false,

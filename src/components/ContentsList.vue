@@ -1,14 +1,15 @@
 <template>
   <v-container>
+
     <v-list>
       <v-card class="ma-2" elevation="0" outlined v-for="data in list" :key="data.id">
 
         <v-row align="center" class="card-row">
-          <v-col cols="6">
+          <v-col cols="4">
             <v-card-text class="name" style="color :#ffb6c1">{{ data.authorId }}</v-card-text>
           </v-col>
-          <v-col cols="6">
-            <v-card-text class="card-date">{{ '@' + data.createdAt }}</v-card-text>
+          <v-col cols="8">
+            <v-card-text class="card-date " style="text-align: right" >{{ '@' + getLocalDate(data.createdAt)}}</v-card-text>
           </v-col>
 
           <v-col cols="8" class="mr-auto">
@@ -33,6 +34,14 @@
       </v-card>
 
     </v-list>
+    <div class="text-center">
+      <v-pagination
+          v-model="pagination.pageNumber"
+          :length="totalPages"
+          circle
+          @input="onPageChange"
+      ></v-pagination>
+    </div>
     <InputModal v-if="inputModalStore.showInputModal"
     >
     </InputModal>
@@ -43,6 +52,7 @@
 import InputModal from "./modal/InputModal";
 import {mapState, mapActions, mapMutations} from "vuex";
 import axios from "axios";
+import {DateTime} from "luxon";
 
 
 export default {
@@ -52,6 +62,11 @@ export default {
 
   },
   data: () => ({
+    totalPages: '',
+    pagination: {
+      pageNumber: 1,
+      pageSize: 5
+    },
     selectedName: "",
     // list: [
     //   {
@@ -77,6 +92,11 @@ export default {
       })
   ,
   methods: {
+    // eslint-disable-next-line no-unused-vars
+    getLocalDate(date){
+      if(!date) return ''
+      return DateTime.fromISO(date).toFormat('yyyy-MM-dd HH:mm:ss')
+    },
     ...mapMutations('inputModalStore', ['changeShowInputModal']
     ),
     ...mapActions('inputModalStore', ['callChangeShowInputModal']),
@@ -85,17 +105,34 @@ export default {
       this.selectedName = name
       this.$store.dispatch('inputModalStore/callChangeShowInputModal', headerName)
     },
+    onPageChange() {
+      this.getContentsList()
+
+    },
+    getContentsList() {
+      // eslint-disable-next-line no-unused-vars
+      const res = axios.get('/api/contents', {
+        params: {
+          pageNumber : this.pagination.pageNumber,
+          pageSize : this.pagination.pageSize
+        }
+
+      })
+          .then(res => {
+                this.list = res.data.content
+                this.pagination.pageNumber = res.data.pageable.pageNumber+1
+                this.totalPages = res.data.totalPages
+              }
+              // eslint-disable-next-line no-unused-vars
+          ).catch(error => {
+            alert('리스트를 불러오는데 실패하였습니다.')
+          })
+    },
+
   },
   created() {
-    // eslint-disable-next-line no-unused-vars
-    const res = axios.get('/api/contents')
-        .then(res => {
-              this.list = res.data.data
-            }
-            // eslint-disable-next-line no-unused-vars
-        ).catch(error=>{
-          alert('리스트를 불러오는데 실패하였습니다.')
-        })
+    this.getContentsList();
+
 
   }
 

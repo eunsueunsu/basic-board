@@ -1,0 +1,35 @@
+<template>
+  <v-container>
+
+
+    <v-row  class="text-center">
+<!--      <v-col>-->
+<!--        <v-switch :label="`깜깜하게`" v-model="$vuetify.theme.dark" class="float-right"></v-switch>-->
+<!--      </v-col>-->
+      <v-col cols="12">
+        <v-img
+          :src="require('../assets/loopy.jpg')"
+          class="my-3"
+          contain
+          height="200"
+        />
+      </v-col>
+      <v-col class="mb-4">
+        <h3 class="display-1 font-weight-bold mb-3">
+          한마디씩,, 쓰고가쇼,,
+        </h3>
+        <h4>그냥 가지 마쇼,,</h4>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+  export default {
+    name: 'Intro',
+
+    data: () => ({
+
+    }),
+  }
+</script>
