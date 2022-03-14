@@ -3,13 +3,11 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <v-card class="modal-container" v-click-outside="onClickOutside">
-
           <div class="modal-header">
             <slot name="header">
               {{ inputModalStore.modalHeaderName }}
             </slot>
           </div>
-
           <div class="modal-body">
             <slot name="body">
               <v-text-field
@@ -18,19 +16,15 @@
                   :rules="[() => !!pwd || '비밀번호를 입력해주세요']"
                   label=""
                   placeholder="password"
-
               ></v-text-field>
             </slot>
           </div>
-
           <div class="modal-footer">
             <slot name="footer">
               <!--              TODO : 비밀번호 확인  결과 부모component로 - 수정/삭제 진행-->
               <v-btn class="primary col-md" @click="onClickConfirm">확인</v-btn>
-
             </slot>
           </div>
-
         </v-card>
       </div>
 
@@ -53,16 +47,19 @@ export default {
         inputModalStore: state => state.inputModalStore
       }),
   methods: {
-    onClickConfirm(){
+    onClickConfirm() {
       // TODO : 비밀번호 체크 api 수정/삭제 분기
       // success -> bottomsheet open
 
       // fail -> toast error
 
       // this.$emit('close')
+
+      this.$store.dispatch('inputModalStore/callCheckPwd')
     },
-    onClickOutside(){
-    this.$store.dispatch('inputModalStore/callCloseInputModal')
+    onClickOutside() {
+
+      // this.$store.dispatch('inputModalStore/callCloseInputModal',id,this.data.pwd)
     }
 
 

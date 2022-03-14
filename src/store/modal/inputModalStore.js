@@ -3,6 +3,8 @@ const state = {
     message: '',
     showInputModal: false,
     modalHeaderName: '',
+    modalId: '',
+    modalPwd: ''
 
 }
 
@@ -16,8 +18,12 @@ const mutations = {
         state.showInputModal = true
         state.modalHeaderName = headerName
     },
-    closeInputModal(state){
+    closeInputModal(state) {
         state.showInputModal = false
+    },
+    checkPwd(state, id, pwd) {
+        state.modalId = id
+        state.modalPwd = pwd
     }
 }
 
@@ -29,8 +35,11 @@ const actions = {
     callChangeShowInputModal({commit}, headerName, show) {
         commit('changeShowInputModal', headerName, show)
     },
-    callCloseInputModal({commit}){
+    callCloseInputModal({commit}) {
         commit('closeInputModal')
+    },
+    callCheckPwd({commit},id,pwd){
+        commit('checkPwd',id,pwd)
     }
 }
 
@@ -39,7 +48,7 @@ const getters = {
     getMsg(state) {
         return `${state.message} => Length : ${state.message.length}`
     },
-    showInputModal(state){
+    showInputModal(state) {
         return state["inputModalStore/showInputModal"]
     }
 }

@@ -1,9 +1,7 @@
 <template>
   <v-container>
-
     <v-list>
       <v-card class="ma-2" elevation="0" outlined v-for="data in list" :key="data.id">
-
         <v-row align="center" class="card-row">
           <v-col cols="4">
             <v-card-text class="name" style="color :#ffb6c1">{{ data.authorId }}</v-card-text>
@@ -12,7 +10,6 @@
             <v-card-text class="card-date " style="text-align: right">{{ '@' + getLocalDate(data.createdAt) }}
             </v-card-text>
           </v-col>
-
           <v-col cols="8" class="mr-auto">
             <v-card-text>{{ data.text }}</v-card-text>
           </v-col>
@@ -29,11 +26,9 @@
                 </v-icon>
               </v-btn>
             </v-card-actions>
-
           </v-col>
         </v-row>
       </v-card>
-
     </v-list>
     <div class="text-center">
       <v-pagination
@@ -69,31 +64,31 @@ export default {
       pageSize: 5
     },
     selectedName: "",
-    list: [
-      {
-        id: 1,
-        authorId: "eunsu lee",
-        text: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1 ",
-        createdAt: '2021-12-19T16:09:47+09:00'
-      },
-      {
-        id: 2, authorId: "배고파요", text: "배고프다구요", createdAt: '2021-12-19T16:09:47+09:00'
-      },
-      {
-        id: 3,
-        authorId: "eunsu lee",
-        text: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1"
-        , createdAt: '2021-12-19T16:09:47+09:00'
-
-      },
-      {
-        id: 4, authorId: "eunsu lee", text: "test2", createdAt: '2021-12-19T16:09:47+09:00'
-      },
-      {
-        id: 5, authorId: "eunsu lee", text: "test2", createdAt: '2021-12-19T16:09:47+09:008'
-      },
-    ]
-    // list: []
+    // list: [
+    //   {
+    //     id: 1,
+    //     authorId: "eunsu lee",
+    //     text: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1 ",
+    //     createdAt: '2021-12-19T16:09:47+09:00'
+    //   },
+    //   {
+    //     id: 2, authorId: "배고파요", text: "배고프다구요", createdAt: '2021-12-19T16:09:47+09:00'
+    //   },
+    //   {
+    //     id: 3,
+    //     authorId: "eunsu lee",
+    //     text: "test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1test1"
+    //     , createdAt: '2021-12-19T16:09:47+09:00'
+    //
+    //   },
+    //   {
+    //     id: 4, authorId: "eunsu lee", text: "test2", createdAt: '2021-12-19T16:09:47+09:00'
+    //   },
+    //   {
+    //     id: 5, authorId: "eunsu lee", text: "test2", createdAt: '2021-12-19T16:09:47+09:008'
+    //   },
+    // ]
+    list: []
   }),
   computed:
       mapState({
@@ -115,7 +110,7 @@ export default {
       this.$store.dispatch('inputModalStore/callChangeShowInputModal', headerName)
     },
     onPageChange() {
-      // this.getContentsList()
+      this.getContentsList()
 
     },
     getContentsList() {
@@ -140,7 +135,7 @@ export default {
 
   },
   created() {
-    // this.getContentsList();
+    this.getContentsList();
 
 
   }
