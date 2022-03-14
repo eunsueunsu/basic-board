@@ -58,8 +58,7 @@ export default {
       this.$store.dispatch('inputModalStore/callCheckPwd')
     },
     onClickOutside() {
-
-      // this.$store.dispatch('inputModalStore/callCloseInputModal',id,this.data.pwd)
+      this.$store.dispatch('inputModalStore/callCloseInputModal')
     }
 
 

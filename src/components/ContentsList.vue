@@ -15,12 +15,12 @@
           </v-col>
           <v-col cols="auto">
             <v-card-actions>
-              <v-btn small rounded outlined class="secondary" @click="onClickShowModal('수정하기',data.name)">
+              <v-btn small rounded outlined class="secondary" @click="onClickShowModal('수정하기',data.name, data.id)">
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
             </v-card-actions>
             <v-card-actions>
-              <v-btn small rounded outlined class="secondary" @click="onClickShowModal('삭제하기',data.name)">
+              <v-btn small rounded outlined class="secondary" @click="onClickShowModal('삭제하기',data.name, data.id)">
                 <v-icon>
                   mdi-delete
                 </v-icon>
@@ -105,7 +105,8 @@ export default {
     ),
     ...mapActions('inputModalStore', ['callChangeShowInputModal']),
 
-    onClickShowModal(headerName, name) {
+    onClickShowModal(headerName, name, id) {
+      this.$store.state.inputModalStore.modalId = id 
       this.selectedName = name
       this.$store.dispatch('inputModalStore/callChangeShowInputModal', headerName)
     },
